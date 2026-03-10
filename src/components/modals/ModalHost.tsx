@@ -19,12 +19,12 @@ export function ModalHost() {
             dispatch(closeBaseModal())
           }
         }}
-        title={t('main.baseModalTitle')}
-        description={t('main.baseModalDescription')}
+        title={t('pages.modals.baseModal.title')}
+        description={t('pages.modals.baseModal.description')}
       >
-        <p className="text-sm text-muted-foreground">{t('main.baseModalBody')}</p>
+        <p className="text-sm text-muted-foreground">{t('pages.modals.baseModal.body')}</p>
         <div className="mt-4 flex justify-end">
-          <Button type="button" size="sm" onClick={() => dispatch(closeBaseModal())}>
+          <Button type="button" size="sm" hapticFeedback="light" onClick={() => dispatch(closeBaseModal())}>
             {t('common.close')}
           </Button>
         </div>
@@ -37,12 +37,17 @@ export function ModalHost() {
             dispatch(closeSlideUpModal())
           }
         }}
-        title={t('main.sheetModalTitle')}
-        description={t('main.sheetModalDescription')}
+        title={t('pages.modals.slideUpModal.title')}
+        description={t('pages.modals.slideUpModal.description')}
       >
-        <p className="text-sm text-muted-foreground">{t('main.sheetModalBody')}</p>
+        <p className="text-sm text-muted-foreground">{t('pages.modals.slideUpModal.body')}</p>
         <div className="flex justify-end">
-          <Button type="button" size="sm" onClick={() => dispatch(closeSlideUpModal())}>
+          <Button
+            type="button"
+            size="sm"
+            hapticFeedback="light"
+            onClick={() => dispatch(closeSlideUpModal())}
+          >
             {t('common.close')}
           </Button>
         </div>

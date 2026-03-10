@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-export function usePreloader(delayMs = 900) {
-  const [isPreloading, setIsPreloading] = useState(true)
+export function usePreloader() {
+  const [isOpen, setIsOpen] = useState(true)
 
-  useEffect(() => {
-    const timerId = window.setTimeout(() => {
-      setIsPreloading(false)
-    }, delayMs)
+  const closePreloader = useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
-    return () => {
-      window.clearTimeout(timerId)
-    }
-  }, [delayMs])
-
-  return { isPreloading }
+  return { isOpen, closePreloader }
 }

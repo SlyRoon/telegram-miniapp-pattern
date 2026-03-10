@@ -1,5 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import type { ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes, MouseEventHandler } from 'react'
+import { tgHaptic } from '@/helpers/telegram'
+import type { HapticFeedback } from '@/types'
 import { cn } from '@/lib/utils'
 
 const buttonStyles = cva(
@@ -27,8 +29,24 @@ const buttonStyles = cva(
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonStyles> {}
+    VariantProps<typeof buttonStyles> {
+  hapticFeedback?: HapticFeedback
+}
 
-export function Button({ className, variant, size, ...props }: ButtonProps) {
-  return <button className={cn(buttonStyles({ variant, size }), className)} {...props} />
+export function Button({ className, variant, size, hapticFeedback, onClick, ...props }: ButtonProps) {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    if (hapticFeedback) {
+      tgHaptic(hapticFeedback)
+    }
+
+    onClick?.(event)
+  }
+
+  return (
+    <button
+      className={cn(buttonStyles({ variant, size }), className)}
+      onClick={handleClick}
+      {...props}
+    />
+  )
 }

@@ -9,19 +9,19 @@ export function NotFoundPage() {
   return (
     <main className="min-h-screen px-4 py-4 sm:py-6">
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-        <Header title={t('notFound.headerTitle')} showBackButton />
+        <Header title={t('pages.notFound.headerTitle')} showBackButton />
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('notFound.title')}</CardTitle>
-            <CardDescription>{t('notFound.description')}</CardDescription>
+            <CardTitle>{t('pages.notFound.title')}</CardTitle>
+            <CardDescription>{t('pages.notFound.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Link
               to="/"
               className="inline-flex h-10 items-center rounded-xl border border-border px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent"
             >
-              {t('notFound.backHome')}
+              {t('pages.notFound.backHome')}
             </Link>
           </CardContent>
         </Card>

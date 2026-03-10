@@ -1,5 +1,6 @@
 export type TelegramHapticImpactStyle = 'light' | 'medium' | 'heavy' | 'rigid' | 'soft'
 export type TelegramHapticNotificationType = 'error' | 'success' | 'warning'
+export type HapticFeedback = TelegramHapticImpactStyle | TelegramHapticNotificationType
 
 export interface TelegramWebAppUser {
   id: number
@@ -21,6 +22,8 @@ export interface TelegramWebApp {
   isFullscreen?: boolean
   ready: () => void
   expand: () => void
+  close?: () => void
+  disableVerticalSwipes?: () => void
   requestFullscreen?: () => void
   openLink: (url: string, options?: { try_instant_view?: boolean }) => void
   openTelegramLink: (url: string) => void

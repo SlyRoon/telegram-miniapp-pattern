@@ -11,18 +11,22 @@ import { setAppReady } from '@/store/ui'
 
 function AppContent() {
   const dispatch = useAppDispatch()
-  const { isPreloading } = usePreloader()
+  const { isOpen, closePreloader } = usePreloader()
 
   useEffect(() => {
-    const telegramMeta = initTelegramMiniApp()
-    dispatch(setTelegramMeta(telegramMeta))
-  }, [dispatch])
+    try {
+      const telegramMeta = initTelegramMiniApp()
+      dispatch(setTelegramMeta(telegramMeta))
+    } finally {
+      closePreloader()
+    }
+  }, [closePreloader, dispatch])
 
   useEffect(() => {
-    dispatch(setAppReady(!isPreloading))
-  }, [dispatch, isPreloading])
+    dispatch(setAppReady(!isOpen))
+  }, [dispatch, isOpen])
 
-  if (isPreloading) {
+  if (isOpen) {
     return <Preloader />
   }
 

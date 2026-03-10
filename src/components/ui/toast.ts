@@ -21,3 +21,7 @@ export const showErrorToast = (message: string) => {
   tgHapticNotification('error')
   toast.error(message)
 }
+
+export const showInfoToast = (message: string) => {
+  toast(message)
+}

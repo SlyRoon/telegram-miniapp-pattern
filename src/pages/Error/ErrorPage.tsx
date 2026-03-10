@@ -9,19 +9,19 @@ export function ErrorPage() {
   return (
     <main className="min-h-screen px-4 py-4 sm:py-6">
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
-        <Header title={t('error.headerTitle')} showBackButton />
+        <Header title={t('pages.error.headerTitle')} showBackButton />
 
         <Card>
           <CardHeader>
-            <CardTitle>{t('error.title')}</CardTitle>
-            <CardDescription>{t('error.description')}</CardDescription>
+            <CardTitle>{t('pages.error.title')}</CardTitle>
+            <CardDescription>{t('pages.error.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Link
               to="/"
               className="inline-flex h-10 items-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              {t('error.backHome')}
+              {t('pages.error.backHome')}
             </Link>
           </CardContent>
         </Card>

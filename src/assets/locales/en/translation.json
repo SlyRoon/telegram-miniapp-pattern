@@ -10,49 +10,61 @@
   "header": {
     "title": "Telegram Mini App Starter",
     "back": "Back",
-    "switchLanguage": "Language",
+    "languageEn": "EN",
+    "languageUk": "UK",
     "darkTheme": "Dark",
     "lightTheme": "Light"
   },
-  "main": {
-    "title": "Core shell is ready",
-    "description": "Mobile-first starter with router, redux, i18n, toast, api, and Telegram base helpers.",
-    "appReady": "App shell",
-    "environment": "Environment",
-    "environmentTelegram": "Telegram Mini App",
-    "environmentBrowser": "Regular browser",
-    "tgReady": "Telegram ready()",
-    "tgExpanded": "Telegram expand()",
-    "controlsTitle": "Starter controls",
-    "controlsDescription": "Base actions to verify integrations quickly.",
-    "showToast": "Show toast",
-    "toastSuccess": "Toast + haptic are working.",
-    "openBaseModal": "Open base modal",
-    "openSheetModal": "Open slide-up modal",
-    "openTelegramLink": "Open Telegram link",
-    "openNotFound": "Open 404 page",
-    "openDocs": "Docs",
-    "baseModalTitle": "Base modal",
-    "baseModalDescription": "Reusable centered modal for common dialogs.",
-    "baseModalBody": "Use this as a default modal layer. Business-specific modals should extend it.",
-    "sheetModalTitle": "Slide-up modal",
-    "sheetModalDescription": "Bottom sheet style modal for mobile-first interactions.",
-    "sheetModalBody": "Swipe down or tap close to dismiss this modal.",
-    "uiDemoTitle": "UI demo block",
-    "uiDemoDescription": "Simple primitive usage for quick starter validation.",
-    "demoInputLabel": "Demo input",
-    "demoInputPlaceholder": "Type anything..."
-  },
-  "notFound": {
-    "headerTitle": "Not found",
-    "title": "Page not found",
-    "description": "This route does not exist in the starter.",
-    "backHome": "Back to main"
-  },
-  "error": {
-    "headerTitle": "Error page",
-    "title": "Unexpected error",
-    "description": "Use this route as the base fallback page.",
-    "backHome": "Back to main"
+  "pages": {
+    "main": {
+      "title": "Core shell is ready",
+      "description": "Mobile-first starter with router, redux, i18n, toast, api, and Telegram base helpers.",
+      "appReady": "App shell",
+      "environment": "Environment",
+      "environmentTelegram": "Telegram Mini App",
+      "environmentBrowser": "Regular browser",
+      "tgReady": "Telegram ready()",
+      "tgExpanded": "Telegram expand()",
+      "controlsTitle": "Starter controls",
+      "controlsDescription": "Base actions to verify integrations quickly.",
+      "showToast": "Show toast",
+      "toastSuccess": "Toast + haptic are working.",
+      "openBaseModal": "Open base modal",
+      "openSheetModal": "Open slide-up modal",
+      "openTelegramLink": "Open Telegram link",
+      "openNotFound": "Open 404 page",
+      "openDocs": "Docs",
+      "uiDemoTitle": "UI demo block",
+      "uiDemoDescription": "Simple primitive usage for quick starter validation.",
+      "demoInputLabel": "Demo input",
+      "demoInputPlaceholder": "Type anything..."
+    },
+    "modals": {
+      "baseModal": {
+        "title": "Base modal",
+        "description": "Reusable centered modal for common dialogs.",
+        "body": "Use this as a default modal layer. Business-specific modals should extend it."
+      },
+      "slideUpModal": {
+        "title": "Slide-up modal",
+        "description": "Bottom sheet style modal for mobile-first interactions.",
+        "body": "Swipe down or tap close to dismiss this modal."
+      },
+      "walletModal": {
+        "connect": "Connect wallet"
+      }
+    },
+    "notFound": {
+      "headerTitle": "Not found",
+      "title": "Page not found",
+      "description": "This route does not exist in the starter.",
+      "backHome": "Back to main"
+    },
+    "error": {
+      "headerTitle": "Error page",
+      "title": "Unexpected error",
+      "description": "Use this route as the base fallback page.",
+      "backHome": "Back to main"
+    }
   }
 }

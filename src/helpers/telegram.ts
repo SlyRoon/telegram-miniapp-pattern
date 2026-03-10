@@ -1,5 +1,6 @@
 import { APP_ENV } from '@/app/config'
 import type {
+  HapticFeedback,
   TelegramHapticImpactStyle,
   TelegramHapticNotificationType,
   TelegramMeta,
@@ -49,6 +50,14 @@ export const tgExpand = (): void => {
   getTelegramWebApp()?.expand()
 }
 
+export const tgClose = (): void => {
+  getTelegramWebApp()?.close?.()
+}
+
+export const tgDisableYSwipes = (): void => {
+  getTelegramWebApp()?.disableVerticalSwipes?.()
+}
+
 export const tgRequestFullscreen = (): void => {
   if (!APP_ENV.enableFullscreen) {
     return
@@ -70,12 +79,27 @@ export const tgRequestFullscreen = (): void => {
   }
 }
 
+export const tgOpenFullScreen = (): void => {
+  tgRequestFullscreen()
+}
+
+export const tgHaptic = (type: HapticFeedback): void => {
+  const haptic = getTelegramWebApp()?.HapticFeedback
+
+  if (type === 'success' || type === 'error' || type === 'warning') {
+    haptic?.notificationOccurred(type)
+    return
+  }
+
+  haptic?.impactOccurred(type)
+}
+
 export const tgHapticImpact = (style: TelegramHapticImpactStyle = 'light'): void => {
-  getTelegramWebApp()?.HapticFeedback?.impactOccurred(style)
+  tgHaptic(style)
 }
 
 export const tgHapticNotification = (type: TelegramHapticNotificationType = 'success'): void => {
-  getTelegramWebApp()?.HapticFeedback?.notificationOccurred(type)
+  tgHaptic(type)
 }
 
 export const tgOpenLink = (url: string): void => {
@@ -119,6 +143,7 @@ export const initTelegramMiniApp = (): TelegramMeta => {
 
   tgReady()
   tgExpand()
+  tgDisableYSwipes()
   tgRequestFullscreen()
 
   cachedTelegramMeta = {
