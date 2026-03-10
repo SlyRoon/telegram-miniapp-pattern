@@ -1,0 +1,32 @@
+{
+  "common": {
+    "ready": "готово",
+    "notReady": "не готово"
+  },
+  "home": {
+    "title": "Core starter готовий",
+    "subtitle": "Чисто, масштабовано і готово до росту",
+    "description": "У проєкті вже підключені router, redux store, i18n, toast і api client.",
+    "coreStatus": "Статус ядра: {{status}}",
+    "showToast": "Показати toast",
+    "switchLanguage": "Змінити мову",
+    "setDarkTheme": "Темна тема",
+    "setLightTheme": "Світла тема",
+    "openNotFound": "Відкрити сторінку 404",
+    "toastSuccess": "Система toast працює.",
+    "statRouter": "Роутинг з Home та 404 сторінками вже працює.",
+    "statState": "Типізований Redux Toolkit store підключено.",
+    "statApi": "Axios client готовий для API-модулів.",
+    "statI18n": "Перемикання між англійською та українською працює."
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "description": "Запитаний роут не існує.",
+    "backHome": "Повернутися на головну"
+  },
+  "error": {
+    "title": "Неочікувана помилка",
+    "description": "Під час рендерингу цього роута щось пішло не так.",
+    "backHome": "Повернутися на головну"
+  }
+}

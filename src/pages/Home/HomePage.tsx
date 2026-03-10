@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '@/app/store/hooks'
-import { useTheme } from '@/shared/lib/theme/useTheme'
+import { useTheme } from '@/hooks/useTheme'
 
 export function HomePage() {
   const { i18n, t } = useTranslation()

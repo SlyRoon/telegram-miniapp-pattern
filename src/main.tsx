@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from '@/app/App'
 import '@/index.css'
-import '@/shared/i18n'
+import '@/helpers/i18n'
 
 const savedTheme = window.localStorage.getItem('theme')
 const initialTheme =
