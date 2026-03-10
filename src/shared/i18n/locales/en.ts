@@ -1,0 +1,30 @@
+export const en = {
+  translation: {
+    common: {
+      ready: 'ready',
+      notReady: 'not ready',
+    },
+    home: {
+      title: 'Core starter is ready',
+      subtitle: 'Clean, scalable and ready for growth',
+      description:
+        'This project already includes router, redux store, i18n, toast and api client.',
+      coreStatus: 'Core status: {{status}}',
+      showToast: 'Show toast',
+      switchLanguage: 'Switch language',
+      setDarkTheme: 'Dark theme',
+      setLightTheme: 'Light theme',
+      openNotFound: 'Open 404 page',
+      toastSuccess: 'Toast system works.',
+      statRouter: 'Routing with Home and 404 pages is live.',
+      statState: 'Typed Redux Toolkit store is connected.',
+      statApi: 'Axios client is prepared for API modules.',
+      statI18n: 'Language switch between English and Ukrainian works.',
+    },
+    notFound: {
+      title: 'Page not found',
+      description: 'The requested route does not exist.',
+      backHome: 'Back to home',
+    },
+  },
+} as const
