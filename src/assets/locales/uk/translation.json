@@ -1,32 +1,58 @@
 {
   "common": {
     "ready": "готово",
-    "notReady": "не готово"
+    "notReady": "не готово",
+    "close": "Закрити"
   },
-  "home": {
-    "title": "Core starter готовий",
-    "subtitle": "Чисто, масштабовано і готово до росту",
-    "description": "У проєкті вже підключені router, redux store, i18n, toast і api client.",
-    "coreStatus": "Статус ядра: {{status}}",
+  "preloader": {
+    "loading": "Підготовка Telegram starter..."
+  },
+  "header": {
+    "title": "Telegram Mini App Starter",
+    "back": "Назад",
+    "switchLanguage": "Мова",
+    "darkTheme": "Темна",
+    "lightTheme": "Світла"
+  },
+  "main": {
+    "title": "Core shell готовий",
+    "description": "Mobile-first starter з router, redux, i18n, toast, api та базовими Telegram helper'ами.",
+    "appReady": "App shell",
+    "environment": "Середовище",
+    "environmentTelegram": "Telegram Mini App",
+    "environmentBrowser": "Звичайний браузер",
+    "tgReady": "Telegram ready()",
+    "tgExpanded": "Telegram expand()",
+    "controlsTitle": "Starter контролі",
+    "controlsDescription": "Базові дії для швидкої перевірки інтеграцій.",
     "showToast": "Показати toast",
-    "switchLanguage": "Змінити мову",
-    "setDarkTheme": "Темна тема",
-    "setLightTheme": "Світла тема",
-    "openNotFound": "Відкрити сторінку 404",
-    "toastSuccess": "Система toast працює.",
-    "statRouter": "Роутинг з Home та 404 сторінками вже працює.",
-    "statState": "Типізований Redux Toolkit store підключено.",
-    "statApi": "Axios client готовий для API-модулів.",
-    "statI18n": "Перемикання між англійською та українською працює."
+    "toastSuccess": "Toast + haptic працюють.",
+    "openBaseModal": "Відкрити base modal",
+    "openSheetModal": "Відкрити slide-up modal",
+    "openTelegramLink": "Відкрити Telegram посилання",
+    "openNotFound": "Відкрити 404",
+    "openDocs": "Документація",
+    "baseModalTitle": "Base modal",
+    "baseModalDescription": "Перевикористовувана центрована modal-обгортка для типових діалогів.",
+    "baseModalBody": "Використовуй її як дефолтний modal layer. Бізнесові модалки мають розширювати цей базовий рівень.",
+    "sheetModalTitle": "Slide-up modal",
+    "sheetModalDescription": "Bottom-sheet стиль для mobile-first взаємодій.",
+    "sheetModalBody": "Проведи вниз або натисни закрити, щоб закрити модалку.",
+    "uiDemoTitle": "UI demo блок",
+    "uiDemoDescription": "Просте використання primitive-компонентів для перевірки starter.",
+    "demoInputLabel": "Демо input",
+    "demoInputPlaceholder": "Введи будь-що..."
   },
   "notFound": {
+    "headerTitle": "Не знайдено",
     "title": "Сторінку не знайдено",
-    "description": "Запитаний роут не існує.",
-    "backHome": "Повернутися на головну"
+    "description": "Цей роут відсутній у starter.",
+    "backHome": "На головну"
   },
   "error": {
+    "headerTitle": "Сторінка помилки",
     "title": "Неочікувана помилка",
-    "description": "Під час рендерингу цього роута щось пішло не так.",
-    "backHome": "Повернутися на головну"
+    "description": "Це базова fallback-сторінка для помилок маршрутизації.",
+    "backHome": "На головну"
   }
 }

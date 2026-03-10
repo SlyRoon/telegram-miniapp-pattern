@@ -1,9 +1,8 @@
 import axios from 'axios'
-
-const DEFAULT_API_BASE_URL = '/api'
+import { APP_ENV } from '@/app/config'
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL,
+  baseURL: APP_ENV.apiBaseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
