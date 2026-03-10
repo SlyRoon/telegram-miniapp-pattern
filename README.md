@@ -1,230 +1,245 @@
 # scalable-frontend-pattern
 
-Production-ready **Telegram Mini App frontend starter** на `React + TypeScript + Vite`.
+Практичний starter для **Telegram Mini App** на `React + TypeScript + Vite`.
 
-Ціль проста: дати чисту практичну базу, де вже підключені Telegram runtime, роутинг, глобальний state, i18n, API, toast і mobile-first modal UX.
+Проєкт уже має готову базу: router, redux, i18n, toast, API-client, Telegram helper-слой, modal foundation, theme switch і базові UI primitives.
 
-## Концепція
+## 1) Концепція
 
-Цей starter тримається прагматичного підходу:
+Це не демо-шаблон і не перевантажена архітектура. Це робочий мінімум, який легко масштабувати:
 
-- мінімальне, але реальне ядро (без фейкового scaffold)
-- вертикальний поділ по прикладних зонах (`app/api/components/helpers/store/pages`)
-- без переускладнення, поки немає доменної складності
-- Telegram інтеграція як першокласна частина runtime
+- чіткий поділ по зонах відповідальності
+- Telegram runtime як частина core
+- mobile-first UI з modal-first UX
+- прості розширення без зайвого бойлерплейту
 
-Це не навчальний демо-проєкт і не фреймворк «на все». Це робоча база для Telegram Mini Apps.
-
-## Технологічний стек
+## 2) Поточний стек
 
 - `react`, `react-dom`, `typescript`, `vite`
-- `react-router-dom` (route-level сторінки)
-- `@reduxjs/toolkit`, `react-redux` (global `ui/data` state)
-- `axios` (API client + request modules)
+- `react-router-dom`
+- `@reduxjs/toolkit`, `react-redux`
+- `axios`
 - `i18next`, `react-i18next`, `i18next-browser-languagedetector`
 - `react-hot-toast`
-- `tailwindcss` + `shadcn`-підхід
+- `tailwindcss`, `tailwind-merge`, `class-variance-authority`, `clsx`
 - `lucide-react`
 - `vite-plugin-svgr`
 
-## Структура проєкту
+## 3) Поточна структура
 
 ```text
 src/
-├── app/                         # композиція та запуск застосунку
-│   ├── App.tsx                  # app shell: preloader, tg init, router, modal host
-│   ├── config/                  # runtime-конфіг з env
-│   ├── providers/               # Redux + Toaster провайдери
-│   ├── router/                  # конфіг маршрутів
-│   ├── store/                   # bridge re-export до root store
-│   └── styles/                  # глобальні стилі + theme tokens
+├── api/
+│   ├── client.ts
+│   ├── index.ts
+│   └── requests/
+│       ├── auth.ts
+│       ├── telegram.ts
+│       ├── user.ts
+│       └── index.ts
 │
-├── api/                         # http client і request-модулі
-│   ├── client.ts                # axios instance
-│   └── requests/                # групи endpoint-ів (auth/user/telegram)
+├── app/
+│   ├── App.tsx
+│   ├── config/
+│   │   ├── env.ts
+│   │   └── index.ts
+│   ├── providers/
+│   │   └── AppProviders.tsx
+│   ├── router/
+│   │   ├── AppRouter.tsx
+│   │   └── routes.tsx
+│   ├── store/
+│   │   ├── hooks.ts
+│   │   └── index.ts
+│   └── styles/
+│       └── globals.css
 │
-├── assets/                      # статичні ресурси
-│   └── locales/                 # i18n словники (en, uk)
+├── assets/
+│   └── locales/
+│       ├── en/translation.json
+│       └── uk/translation.json
 │
 ├── components/
-│   ├── common/                  # перевикористовувані app-level компоненти
-│   │   ├── Header.tsx           # tg-friendly header з контролами
+│   ├── common/
+│   │   ├── Header.tsx
 │   │   ├── LanguageSwitcher.tsx
+│   │   ├── Preloader.tsx
 │   │   ├── ThemeToggle.tsx
-│   │   └── Preloader.tsx
-│   ├── modals/                  # базова модальна система
+│   │   └── index.ts
+│   ├── modals/
 │   │   ├── BaseModal.tsx
 │   │   ├── SlideUpModal.tsx
-│   │   └── ModalHost.tsx
-│   └── ui/                      # базові UI primitives
-│       ├── button.tsx
-│       ├── input.tsx
-│       ├── label.tsx
-│       ├── card.tsx
-│       ├── modal.tsx
-│       └── toast.ts
+│   │   ├── ModalHost.tsx
+│   │   └── index.ts
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   ├── label.tsx
+│   │   ├── modal.tsx
+│   │   ├── toast.ts
+│   │   └── index.ts
+│   └── index.ts
 │
-├── helpers/                     # платформені та інфраструктурні helper-и
+├── helpers/
+│   ├── devices.ts
 │   ├── i18n.ts
 │   ├── telegram.ts
-│   ├── devices.ts
-│   └── tools.ts
+│   ├── tools.ts
+│   └── index.ts
 │
-├── hooks/                       # загальні хуки
-│   ├── useTheme.ts
+├── hooks/
 │   ├── usePreloader.ts
 │   ├── useSwipeDown.ts
-│   └── useToast.ts
+│   ├── useTheme.ts
+│   ├── useToast.ts
+│   └── index.ts
 │
-├── pages/                       # route-level сторінки
-│   ├── main/MainPage.tsx
-│   ├── Error/ErrorPage.tsx
-│   └── NotFound/NotFoundPage.tsx
+├── lib/
+│   ├── utils.ts
+│   └── index.ts
 │
-├── store/                       # глобальний state
-│   ├── index.ts                 # configureStore
-│   ├── hooks.ts                 # typed hooks
-│   ├── ui/slice.ts              # ui state (app ready + modal state)
-│   └── data/slice.ts            # data state (language + telegram meta)
+├── pages/
+│   ├── main/
+│   │   ├── MainPage.tsx
+│   │   └── index.ts
+│   ├── Error/
+│   │   ├── ErrorPage.tsx
+│   │   └── index.ts
+│   └── NotFound/
+│       ├── NotFoundPage.tsx
+│       └── index.ts
 │
-├── lib/                         # загальні утиліти
-│   └── utils.ts                 # cn() helper
+├── store/
+│   ├── hooks.ts
+│   ├── index.ts
+│   ├── data/
+│   │   ├── slice.ts
+│   │   └── index.ts
+│   └── ui/
+│       ├── slice.ts
+│       └── index.ts
 │
-└── types/                       # спільні TS типи
+├── types/
+│   ├── telegram.ts
+│   ├── ui.ts
+│   ├── user.ts
+│   └── index.ts
+│
+├── main.tsx
+└── vite-env.d.ts
 ```
 
-## Runtime Flow
+## 4) Runtime flow (зараз)
 
-1. `index.html` підключає Telegram WebApp SDK.
-2. `src/main.tsx` виставляє початкову тему, ініціалізує i18n, монтує `<App />`.
-3. `src/app/providers/AppProviders.tsx` підключає Redux і Toaster.
-4. `src/app/App.tsx`:
-   - запускає preloader
-   - ініціалізує Telegram runtime (`ready`, `expand`, optional `fullscreen`)
-   - зберігає Telegram meta у Redux
-   - рендерить router і глобальний `ModalHost`
+1. `index.html` підключає Telegram SDK.
+2. `main.tsx`:
+   - підхоплює тему з `localStorage/system`
+   - ініціалізує i18n
+   - монтує `<App />`
+3. `AppProviders` підключає Redux + global Toaster.
+4. `App.tsx`:
+   - запускає preloader через `usePreloader`
+   - ініціалізує Telegram через `initTelegramMiniApp`
+   - кладе Telegram meta у Redux
+   - рендерить router + `ModalHost`
 
-## Маршрути
+## 5) Маршрути
 
-Налаштовані в `src/app/router/routes.tsx`:
+`src/app/router/routes.tsx`:
 
 - `/` -> `MainPage`
 - `/error` -> `ErrorPage`
 - `*` -> `NotFoundPage`
 
-## Модель стану (Redux)
+## 6) Redux стан
 
-`ui` slice (`src/store/ui/slice.ts`):
+`ui` slice:
 
 - `isAppReady`
 - `isBaseModalOpen`
 - `isSlideUpModalOpen`
 
-`data` slice (`src/store/data/slice.ts`):
+`data` slice:
 
 - `language` (`en | uk`)
-- `telegramMeta`:
-  - `isTelegram`
-  - `isReady`
-  - `isExpanded`
-  - `isFullscreen`
-  - `platform`
+- `telegramMeta` (`isTelegram`, `isReady`, `isExpanded`, `isFullscreen`, `platform`)
 
 Typed hooks:
 
 - `useAppDispatch`
 - `useAppSelector`
 
-## Telegram-шар
+## 7) i18n (актуальний формат)
 
-`src/helpers/telegram.ts` надає базові wrapper-методи:
+Локалі зберігаються в:
 
-- `getTelegramWebApp`
-- `isTelegramMiniApp`
-- `tgReady`
-- `tgExpand`
-- `tgRequestFullscreen`
-- `tgHapticImpact`
-- `tgHapticNotification`
-- `tgOpenLink`
-- `tgOpenTelegramLink`
+- `src/assets/locales/en/translation.json`
+- `src/assets/locales/uk/translation.json`
+
+Ключі організовані у вкладеному форматі:
+
+- `pages.main.*`
+- `pages.modals.*`
+- `pages.error.*`
+- `pages.notFound.*`
+
+Приклад використання:
+
+```ts
+const { t } = useTranslation()
+t('pages.modals.walletModal.connect')
+```
+
+Мови перемикаються явно через `LanguageSwitcher` (EN/UK), а не простим blind-toggle.
+
+## 8) Telegram helper-шар
+
+`src/helpers/telegram.ts` надає:
+
+- `tgReady`, `tgExpand`, `tgClose`
+- `tgDisableYSwipes`
+- `tgRequestFullscreen`, `tgOpenFullScreen`
+- `tgOpenLink`, `tgOpenTelegramLink`
+- `tgHaptic` + `tgHapticImpact` + `tgHapticNotification`
 - `initTelegramMiniApp`
 
-### Сумісність fullscreen
+Важливо:
 
-`requestFullscreen` захищений:
+- fullscreen захищений перевірками (включно з версією WebApp)
+- старі клієнти Telegram не валять застосунок
 
-- вимикається env-прапором
-- перевіряється на наявність методу
-- вимагає версію WebApp `>= 8.0`
-- обгорнутий у `try/catch`, щоб старі Telegram-клієнти не валили застосунок
+## 9) UI foundation (актуально)
 
-## Модальний патерн
+- `Button` підтримує `hapticFeedback` проп
+- є базові primitives: `button`, `input`, `label`, `card`, `modal`, `toast`
+- модалки будуються через `BaseModal` і `SlideUpModal`
+- глобальна композиція модалок: `ModalHost`
 
-Starter має тільки базовий modal layer:
+## 10) Змінні середовища
 
-- `BaseModal` (центрований)
-- `SlideUpModal` (bottom-sheet стиль)
-- `ModalHost` (глобальна композиція модалок)
+`.env.example`:
 
-Предметні модалки (wallet/deposit/withdraw) додаються поверх цієї бази на наступному етапі.
+```env
+VITE_API_BASE_URL=/api
+VITE_TG_ENABLE_FULLSCREEN=true
+VITE_TON_MANIFEST_URL=
+```
 
-## API-шар
-
-- `src/api/client.ts` -> спільний `axios.create(...)`
-- `src/api/requests/*` -> модулі запитів (`auth`, `user`, `telegram`)
-
-Правило:
-
-- `api/client.ts` тримає лише інфраструктуру
-- `api/requests/` тримає endpoint-логіку
-- оркестрація живе у pages/components/features, а не в axios-конфігу
-
-## i18n
-
-- init: `src/helpers/i18n.ts`
-- локалі:
-  - `src/assets/locales/en/translation.json`
-  - `src/assets/locales/uk/translation.json`
-
-Порядок визначення мови:
-
-1. `localStorage`
-2. `navigator`
-
-Підтримувані мови: `en`, `uk`.
-
-## Стилі та UI
-
-- глобальні стилі: `src/app/styles/globals.css`
-- дизайн-токени через CSS variables
-- light/dark тема через `useTheme`
-- базові UI primitives у `src/components/ui`
-
-## Скрипти
+## 11) Скрипти
 
 ```bash
 npm run dev
+npm run dev-ngrok
+npm run dev-ngrol
 npm run lint
 npm run build
 npm run preview
 ```
 
-## Змінні середовища
+`dev-ngrol` залишено як alias на `dev-ngrok` (щоб не ламалося через частий typo).
 
-Створи `.env` з `.env.example`:
-
-```bash
-cp .env.example .env
-```
-
-| Змінна | Обов'язкова | Значення за замовчуванням | Опис |
-|---|---|---|---|
-| `VITE_API_BASE_URL` | так | `/api` | Base URL для axios client |
-| `VITE_TG_ENABLE_FULLSCREEN` | ні | `true` | Увімкнути/вимкнути fullscreen на старті |
-| `VITE_TON_MANIFEST_URL` | ні | `${origin}/ton-connect-manifest.json` | Резерв під TonConnect інтеграцію |
-
-## Швидкий старт
+## 12) Швидкий старт
 
 ```bash
 npm install
@@ -232,50 +247,22 @@ cp .env.example .env
 npm run dev
 ```
 
-## Як розширювати
-
-### Додати новий API-запит
-
-1. Створи файл у `src/api/requests/`.
-2. Використовуй `apiClient` з `src/api/client.ts`.
-3. Експортуй через `src/api/requests/index.ts`.
-
-### Додати нову route-сторінку
-
-1. Створи сторінку в `src/pages/<Feature>/`.
-2. Додай route object у `src/app/router/routes.tsx`.
-3. Тримай page-level оркестрацію в самій сторінці.
-
-### Додати нову модалку
-
-1. Будуй її на базі `BaseModal` або `SlideUpModal`.
-2. Додай open/close state у `store/ui/slice.ts`.
-3. Підключи у `ModalHost`.
-
-### Додати новий ключ локалізації
-
-1. Онови обидва файли `en/translation.json` і `uk/translation.json`.
-2. Використовуй `t("...")` у компоненті.
-
-## Non-Goals (свідомо не включено)
-
-У starter навмисно **немає**:
-
-- готового auth flow
-- бізнесових/доменних екранів
-- важких data-оркестраторів за замовчуванням
-- websocket-шару
-- предметної Telegram-логіки (payments/referrals/game)
-
-База готова, доменні модулі нашаровуються окремо.
-
-## Quality Gates
-
-Перед кожним комітом:
+Для публічного URL через ngrok:
 
 ```bash
-npm run lint
-npm run build
+npm run dev-ngrok
 ```
 
-Якщо обидві перевірки пройшли, starter-база в здоровому стані.
+Якщо запускаєш ngrok вперше, додай токен один раз:
+
+```bash
+ngrok config add-authtoken <YOUR_NGROK_TOKEN>
+```
+
+## 13) Що тут свідомо НЕ включено
+
+- предметна бізнес-логіка (wallet/deposit/referrals/game)
+- auth-flow з бекенд інтеграцією під ключ
+- важкі опціональні інтеграції «на майбутнє»
+
+Starter залишається чистим, а доменні модулі додаються поверх цього фундаменту.
